@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Candlelight</title>
+
+  <!-- p5.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
+  <script src="sketch.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: sans-serif;
+      background-color: black;
+      color: rgb(217, 255, 0);
+    }
+
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .caption p {
+      font-size: clamp(12px, 2vw, 20px);
+      text-align: center;
+      max-width: 95vw;
+      margin: 20px auto;
+      line-height: 1.3;
+      color: rgb(217, 255, 0);
+      font-family: mysecondfont;
+      user-select: none;
+      text-shadow:
+        0 0 5px rgba(255,255,255,0.4),
+        0 0 20px rgba(255,255,255,0.3),
+        0 0 5px rgba(255,255,255,0.2);
+    }
+
+    /* Wave animation for span letters inside caption */
+    .caption span {
+      display: inline-block;
+      animation: wave 2s infinite ease-in-out;
+      text-shadow:
+        0 0 5px rgba(255,255,255,0.4),
+        0 0 20px rgba(255,255,255,0.3),
+        0 0 5px rgba(255,255,255,0.2);
+    }
+
+    .caption span:nth-child(odd) {
+      animation-delay: 0s;
+    }
+
+    .caption span:nth-child(even) {
+      animation-delay: 0.2s;
+    }
+
+    @keyframes wave {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="caption">
+    <p>
+      <span>E</span><span>a</span><span>c</span><span>h</span>&nbsp;
+      <span>l</span><span>i</span><span>g</span><span>h</span><span>t</span>&nbsp;
+      <span>i</span><span>s</span>&nbsp;
+      <span>a</span>&nbsp;
+      <span>m</span><span>e</span><span>m</span><span>o</span><span>r</span><span>y</span>&nbsp;—
+      <span>c</span><span>l</span><span>i</span><span>c</span><span>k</span>&nbsp;
+      <span>o</span><span>r</span>&nbsp;
+      <span>d</span><span>r</span><span>a</span><span>g</span>&nbsp;
+      <span>t</span><span>o</span>&nbsp;
+      <span>h</span><span>o</span><span>l</span><span>d</span>&nbsp;
+      <span>t</span><span>h</span><span>e</span><span>m</span>&nbsp;
+      <span>c</span><span>l</span><span>o</span><span>s</span><span>e</span>,&nbsp; <br>
+      <span>b</span><span>e</span><span>f</span><span>o</span><span>r</span><span>e</span>&nbsp;
+      <span>t</span><span>h</span><span>e</span>&nbsp;
+      <span>l</span><span>a</span><span>s</span><span>t</span>&nbsp;
+      <span>c</span><span>a</span><span>n</span><span>d</span><span>l</span><span>e</span><span>l</span><span>i</span><span>g</span><span>h</span><span>t</span>&nbsp;
+      <span>s</span><span>l</span><span>i</span><span>p</span><span>s</span>&nbsp;
+      <span>i</span><span>n</span><span>t</span><span>o</span>&nbsp;
+      <span>t</span><span>h</span><span>e</span>&nbsp;
+      <span>d</span><span>a</span><span>r</span><span>k</span><span>.</span><span>.</span><span>.</span>
+    </p>
+  </div>
+
+  <video id="introVideo" autoplay muted playsinline loop>
+    <source src="Materials/candle_loop.mp4" type="video/mp4" />
+  </video>
+
+  <video id="candleVideo" autoplay muted>
+    <source src="Materials/candle_timing.mp4" type="video/mp4" />
+  </video>
+
+  <audio src="Materials/Ambient.mp3" autoplay loop style="display: none;"></audio>
+
+</body>
+</html>

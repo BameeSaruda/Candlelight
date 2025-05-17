@@ -1,0 +1,98 @@
+/* style.css */
+
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+}
+
+/* Body and html styles (redundant if inline style exists, but good practice) */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: black;
+  color: rgb(217, 255, 0);
+}
+
+/* Canvas styling */
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+video {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;     /* เต็มความกว้างหน้าจอ */
+  height: 100vh;    /* เต็มความสูงหน้าจอ */
+  object-fit: cover;  /* ครอบคลุมเต็มพื้นที่ (อาจตัดขอบบ้าง) */
+  z-index: 0;
+  display: none;
+}
+
+
+
+@font-face {
+  font-family: mysecondfont;
+  src: url(Materials/InstrumentSerif-Regular.ttf);
+}
+
+/* Caption container */
+.caption {
+  position: fixed;
+  bottom: 10vh;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+  user-select: none;
+  pointer-events: none; /* เพื่อไม่ให้ขวางการคลิก */
+}
+
+/* Caption text */
+.caption p {
+  font-size: clamp(12px, 2vw, 20px);
+  max-width: 95vw;
+  margin: 0 auto;
+  line-height: 1.3;
+  color: rgb(217, 255, 0);
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Animation for each letter */
+.caption span {
+  display: inline-block;
+  animation: wave 2s infinite ease-in-out;
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Slight delay on even spans for wave effect */
+.caption span:nth-child(odd) {
+  animation-delay: 0s;
+}
+
+.caption span:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+/* Keyframes for wave animation */
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}

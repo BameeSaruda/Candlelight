@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Fade Sequence with Glow and Animation</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: black;
+    color: rgb(221, 255, 0);
+    font-family: mysecondfont, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .life-text, .openquote, .text-box {
+    opacity: 0;
+    transition-property: opacity;
+    transition-timing-function: ease-in-out;
+  }
+
+  .life-text {
+    font-size: 250px;
+    padding-bottom: 5%;
+    margin: 0;
+    transition-duration: 3s;
+    line-height: 80%;
+  }
+
+  /* wave animation และ glow */
+  .life-text span, .text-box span {
+    display: inline-block;
+    animation: wave 2s infinite ease-in-out;
+    text-shadow:
+      0 0 5px rgba(255,255,255,0.4),
+      0 0 20px rgba(255,255,255,0.3),
+      0 0 5px rgba(255,255,255,0.2);
+  }
+  .life-text span:nth-child(odd), .text-box span:nth-child(odd) {
+    animation-delay: 0s;
+  }
+  .life-text span:nth-child(even), .text-box span:nth-child(even) {
+    animation-delay: 0.2s;
+  }
+
+  .openquote {
+    position: absolute;
+    bottom: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(95%, 1400px);
+    font-family: mysecondfont, sans-serif;
+    padding: 0 1rem;
+    transition-duration: 3s;
+  }
+
+  .openquote p {
+    font-size: clamp(15px, 2.2vw, 18px);
+    margin: 0;
+    text-shadow:
+      0 0 5px rgba(255,255,255,0.4),
+      0 0 20px rgba(255,255,255,0.3),
+      0 0 5px rgba(255,255,255,0.2);
+  }
+  
+  .text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    font-family: mysecondfont, sans-serif;
+    line-height: 80%;
+    cursor: pointer;
+    user-select: none;
+    transition-duration: 3s;
+    display: inline-block;
+  }
+
+  .text-box:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @font-face {
+    font-family: mysecondfont;
+    src: url(Materials/InstrumentSerif-Regular.ttf);
+  }
+</style>
+</head>
+<body>
+  <audio src="Materials/Ambient.mp3" autoplay loop style="display: none;"></audio>
+
+  <div class="life-text" id="lifeText">
+    <span>L</span><span>I</span><span>F</span><span>E</span>&nbsp;
+    <span>I</span><span>S</span>&nbsp;
+    <span>L</span><span>I</span><span>K</span><span>E</span>&nbsp;
+    <br>
+    <span>A</span>&nbsp;
+    <span>C</span><span>A</span><span>N</span><span>D</span><span>L</span><span>E</span>
+  </div>
+
+  <div class="openquote" id="openQuote">
+    <p>
+      Every moment is a flicker of light drifting from the flame — brief, beautiful, and impossible to hold.<br>
+      We reach out to catch those moments, to hold onto the people we love, hoping they’ll stay. But just like candlelight, they slip away.
+    </p>
+  </div>
+
+  <div class="text-box" id="textBox" onclick="location.href='Candlelight.html'">
+    <span>C</span><span>l</span><span>i</span><span>c</span><span>k</span><span>!</span>&nbsp;
+    <span>t</span><span>o</span>&nbsp; 
+    <span>l</span><span>i</span><span>g</span><span>h</span><span>t</span>&nbsp; <br>
+    <span>y</span><span>o</span><span>u</span><span>r</span>&nbsp;
+    <span>C</span><span>a</span><span>n</span><span>d</span><span>l</span><span>e</span>
+  </div>
+
+<script>
+  window.onload = () => {
+    const lifeText = document.getElementById('lifeText');
+    const openQuote = document.getElementById('openQuote');
+    const textBox = document.getElementById('textBox');
+
+    // 0-3 วิ life-text เฟดเข้า
+    lifeText.style.transitionDuration = '1s';
+    lifeText.style.opacity = '1';
+
+    // 3-7 วิ life-text ค้าง (opacity = 1 อยู่แล้ว)
+
+    // 7-10 วิ openquote เฟดเข้า
+    setTimeout(() => {
+      openQuote.style.transitionDuration = '2s';
+      openQuote.style.opacity = '1';
+    }, 500);
+
+    // 10-16 วิ life-text และ openquote เฟดออกพร้อมกัน (6 วิ)
+    setTimeout(() => {
+      lifeText.style.transitionDuration = '2s';
+      openQuote.style.transitionDuration = '2s';
+      lifeText.style.opacity = '0';
+      openQuote.style.opacity = '0';
+    }, 4000);
+
+    // 16-19 วิ text-box เฟดเข้า
+    setTimeout(() => {
+      textBox.style.transitionDuration = '3s';
+      textBox.style.opacity = '1';
+    }, 6000);
+  }
+
+</script>
+
+</body>
+</html>
